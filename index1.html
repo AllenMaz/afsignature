@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>afsignature</title>
+    <style>
+        body{
+            background:url(1.jpg);
+            background-size:contain;
+        }
+        .panel{
+            width:80%;
+            height:500px;
+            margin:50px auto;
+            border:solid 1px #eee;
+        }
+    </style>
+    <script src="dist/afsignature.js"></script>
+</head>
+<body>
+    <div id="panel" class="panel"></div>
+    <div id="pane2" class="panel"></div>
+    <img id="imgprev" src="">
+    <script>
+
+    var aa = new afsignature().init({
+        renderdom:document.getElementById("panel"),
+        bgcolor:"#FF5722",
+        color:"#CDDC39",
+        linewidth:10,
+        alpha:0.3,
+        parampanel:{
+            position:"right"
+        },
+        saveevent:function (dataurl) {
+            document.getElementById("imgprev").setAttribute("src",dataurl);
+
+        }
+    });
+
+    new afsignature().init({
+        renderdom:document.getElementById("pane2"),
+        parampanel:{
+            position:"down"
+
+        },
+        saveevent:function (dataurl) {
+            document.getElementById("imgprev").setAttribute("src",dataurl);
+
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>afsignature</title>
+    <style>
+        .clearbtn{
+            width:200px;
+            height:200px;
+            line-height: 200px;
+            text-align: center;
+            font-size:60px;
+            background-color: red;
+        }
+    </style>
+
+</head>
+<body>
+    <canvas id="singaturepanel" class="signaturepanel" width="900px" height="900px" style="border:1px solid #d3d3d3;">
+        <div></div>
+    </canvas>
+    <div id="clearbtn" class="clearbtn">清除</div>
+    <div id="colorpick" class="clearbtn">颜色</div>
+<input type="color">
+    <img id="store" src="">
+    <script>
+
+        var canvas = document.getElementById("singaturepanel");
+
+        var ctx=canvas.getContext("2d");
+        ctx.fillStyle = "#c3b0b0";
+        ctx.globalAlpha = 0;
+        ctx.fillRect(0,0,900,900);
+
+        ctx.fillStyle = "#000000";
+
+        canvas.addEventListener("touchstart",function (e) {
+            var x = e.touches[0].clientX;
+            var y = e.touches[0].clientY;
+            ctx.globalAlpha = 1;
+            ctx.fillStyle = "#000000";
+            ctx.lineWidth = 10;
+            ctx.beginPath();
+            ctx.moveTo(x,y);
+        });
+        canvas.addEventListener("touchmove",function (e) {
+            e.preventDefault();
+            var x = e.touches[0].clientX;
+            var y = e.touches[0].clientY;
+            ctx.lineTo(x,y);
+            ctx.stroke();
+        });
+
+        canvas.addEventListener("touchend",function (e) {
+            ctx.closePath();
+        });
+
+        document.getElementById("clearbtn").addEventListener("click",function (e) {
+            document.getElementById("store").setAttribute("src",canvas.toDataURL('image/png'));
+
+            ctx.clearRect(0,0,900,900);
+            ctx.fillStyle = "#c3b0b0";
+            ctx.globalAlpha = 0;
+            ctx.fillRect(0,0,900,900);
+
+        })
+
+        document.getElementById("colorpick").addEventListener("click",function (e) {
+
+
+        })
+
+    </script>
+</body>
+</html>
